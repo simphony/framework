@@ -9,7 +9,5 @@ install:
   - . /opt/openfoam222/etc/bashrc
   - . ~/simphony/bin/active
 script:
+  - set
   - haas simphony
-  - haas foam_controlwrapper
-  - haas jyu_engine
-  - haas simlammps
