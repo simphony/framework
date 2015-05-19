@@ -17,5 +17,5 @@ script:
   - haas jyulb -v
   - haas simlammps -v
   - haas simphony_mayavi -v
-  - hass foam_controwrapper -v
+  - haas foam_controwrapper -v
   - haas tests/ -v
