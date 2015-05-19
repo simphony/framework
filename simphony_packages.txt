@@ -1,5 +1,5 @@
 git+https://github.com/simphony/simphony-common.git@0.1.1#egg=simphony
-git+https://github.com/simphony/simphony-openfoam.git@0.1.2#egg=foam_controlwrapper
+git+https://github.com/simphony/simphony-openfoam.git@0.1.1#egg=foam_controlwrapper
 git+https://github.com/simphony/simphony-jyulb.git@0.1.1#egg=jyu_engine
 git+https://github.com/simphony/simphony-lammps-md.git@0.1.2#egg=simlammps
 git+https://github.com/simphony/simphony-mayavi.git@0.1.1#egg=simphony_mayavi
