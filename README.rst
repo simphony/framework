@@ -117,7 +117,7 @@ are:
 - https://github.com/simphony/simphony-common/releases/tag/0.1.1, version 0.1.1
 - https://github.com/simphony/simphony-jyulb/releases/tag/0.1.1, version 0.1.1
 - https://github.com/simphony/simphony-lammps-md/releases/tag/0.1.2, version 0.1.2
-- https://github.com/simphony/simphony-openfoam/releases/tag/0.1.2, version 0.1.2
+- https://github.com/simphony/simphony-openfoam/releases/tag/0.1.1, version 0.1.1
 - https://github.com/simphony/simphony-mayavi/releases/tag/0.1.1, version 0.1.1
 
 To install the SimPhoNy components one needs to run the following commands::
