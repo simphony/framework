@@ -58,6 +58,18 @@ The following packages are required::
   sudo apt-get install libatlas-dev libatlas3gf-base
   sudo apt-get install -y --force-yes openfoam222
 
+Fix python pip
+~~~~~~~~~~~~~~
+
+It is important to have the latest pip and virtualenv in order to better support
+installation. So the following commands are required::
+
+  curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+  sudo python get-pip.py
+  pip --version
+  sudo pip install --upgrade setuptools
+  sudo pip install --upgrade virtualenv
+
 
 External packages
 ~~~~~~~~~~~~~~~~~
@@ -134,6 +146,7 @@ A set of simple installation scripts are also provided that execute the above co
 in sequence::
 
   sudo ./install_apt_requirements.sh
+  sudo ./fix_pip.sh
   . /opt/openfoam222/etc/bashrc
   virtualenv ~/simphony --system-site-packages
   source ~/simphony/bin/activate
