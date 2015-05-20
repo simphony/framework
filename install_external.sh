@@ -10,6 +10,7 @@ cd src
 make -j 2 ubuntu_simple
 cp $(pwd)/lmp_ubuntu_simple $VIRTUAL_ENV/bin/lammps
 popd
+rm -Rf lammps
 
 # Install JYU-LB
 git clone https://github.com/simphony/JYU-LB.git
@@ -26,4 +27,3 @@ pushd PyFoam
 python setup.py install
 popd
 rm -Rf PyFoam
-
