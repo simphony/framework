@@ -24,3 +24,13 @@ svn co https://svn.code.sf.net/p/openfoam-extend/svn/trunk/Breeder/other/scripti
 pushd PyFoam
 python setup.py install
 popd
+
+# install FoamInterface package
+git clone https://github.com/simphony/simphony-openfoam.git foam_interface
+pushd foam_interface
+pushd foam-interface
+wmake libso
+python setup.py Install
+popd
+popd
+rm -Rf foam_interface
