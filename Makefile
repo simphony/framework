@@ -108,6 +108,7 @@ simphony:
 	@echo "Simphony library installed"
 
 simphony-mayavi:
+	pip install traits  # https://github.com/enthought/traitsui/issues/206
 	pip install --upgrade git+https://github.com/simphony/simphony-mayavi.git@0.1.1#egg=simphony_mayavi
 	@echo
 	@echo "Simphony Mayavi plugin installed"
