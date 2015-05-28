@@ -37,7 +37,7 @@ clean:
 
 base:
 	add-apt-repository ppa:git-core/ppa -y
-	apt-get update -qq
+	apt-get update
 	apt-get install build-essential git subversion -y
 
 apt-openfoam:
