@@ -87,6 +87,9 @@ lammps:
 	git clone --branch r12824 --depth 1 git://git.lammps.org/lammps-ro.git src/lammps
 	$(MAKE) -C src/lammps/src ubuntu_simple -j 2
 	cp src/lammps/src/lmp_ubuntu_simple $(SIMPHONYENV)/bin/lammps
+	$(MAKE) -C src/lammps/src makeshlib -j 2
+	$(MAKE) -C src/lammps/src ubuntu_simple -f Makefile.shlib -j 2
+	(cd src/lammps/python; python install.py ../../../lib $(SIMPHONYENV)/lib/python2.7/site-packages/)
 	rm -Rf src/lammps
 	@echo
 	@echo "Lammps solver installed"
@@ -128,7 +131,7 @@ simphony-jyu-lb:
 	@echo "Simphony jyu-lb plugin installed"
 
 simphony-lammps:
-	pip install --upgrade git+https://github.com/simphony/simphony-lammps-md.git@0.1.2#egg=simlammps
+	pip install --upgrade git+https://github.com/simphony/simphony-lammps-md.git@0.1.3#egg=simlammps
 	@echo
 	@echo "Simphony lammps plugin installed"
 
@@ -144,7 +147,7 @@ test-plugins:
 	pip install haas
 	haas simphony -v
 	haas jyulb -v
-	haas simlammps -v
+	LD_LIBRARY_PATH=./lib/:$LD_LIBRARY_PATH haas simlammps -v
 	haas simphony_mayavi -v
 	(cd src/simphony-openfoam; haas foam_controlwrapper -v)
 	@echo
