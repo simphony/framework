@@ -32,6 +32,7 @@ clean:
 	rm -Rf src/lammps
 	rm -Rf src/JYU-LB
 	rm -Rf src/simphony-openfoam
+	rm -rf lib/liblammps.so
 	@echo
 	@echo "Removed temporary folders"
 
@@ -89,7 +90,7 @@ lammps:
 	cp src/lammps/src/lmp_ubuntu_simple $(SIMPHONYENV)/bin/lammps
 	$(MAKE) -C src/lammps/src makeshlib -j 2
 	$(MAKE) -C src/lammps/src ubuntu_simple -f Makefile.shlib -j 2
-	(cd src/lammps/python; python install.py ../../../lib $(SIMPHONYENV)/lib/python2.7/site-packages/)
+	(mkdir lib; cd src/lammps/python; python install.py ../../../lib $(SIMPHONYENV)/lib/python2.7/site-packages/)
 	rm -Rf src/lammps
 	@echo
 	@echo "Lammps solver installed"
