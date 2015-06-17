@@ -1,9 +1,9 @@
 SimPhoNy Framework
 ==================
 
-The Simphony Framework is a meta-package to simplify integration and testing
-of the Simphony simulation tools. The framework is build around the simphony
-library and the simphony plugins.
+The SimPhoNy Framework is a meta-package to simplify integration and testing
+of the SimPhoNy simulation tools. The framework is build around the simphony
+library and the SimPhoNy plugins.
 
 
 .. image:: https://travis-ci.org/simphony/simphony-framework.svg?branch=master
@@ -12,16 +12,16 @@ library and the simphony plugins.
 Packages
 --------
 
-The simfony version that is supported in version 0.1.2 is:
+The simphony-common version that is supported in version 0.1.3 of the framework is:
 
-- https://github.com/simphony/simphony-common/releases/tag/0.1.1, version 0.1.1
+- https://github.com/simphony/simphony-common/releases/tag/0.1.3, version 0.1.3
 
-The simpony plugins that are compatible with this release:
+The SimPhoNy plugins that are compatible with this release:
 are:
 
 - https://github.com/simphony/simphony-jyulb/releases/tag/0.1.1, version 0.1.1
 - https://github.com/simphony/simphony-lammps-md/releases/tag/0.1.2, version 0.1.2
-- https://github.com/simphony/simphony-openfoam/releases/tag/0.1.0, version 0.1.0
+- https://github.com/simphony/simphony-openfoam/releases/tag/0.1.1, version 0.1.1
 - https://github.com/simphony/simphony-mayavi/releases/tag/0.1.1, version 0.1.1
 
 
@@ -35,7 +35,7 @@ The repository is hosted in github::
 License
 -------
 
-The Simphony Framework repository code and scripts are governed by the BSD license
+The SimPhoNy Framework repository code and scripts are governed by the BSD license
 (see LICENSE.txt). The various dependencies, however, have their own licensing
 condition please make sure that you agree and comply with the license of the
 components that will be installed.

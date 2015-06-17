@@ -54,6 +54,4 @@ docs/_build/
 target/
 
 # external packages
-lammps/
-PyFoam/
-JYU-LB/
+src/
