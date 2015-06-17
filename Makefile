@@ -32,6 +32,7 @@ clean:
 	rm -Rf src/lammps
 	rm -Rf src/JYU-LB
 	rm -Rf src/simphony-openfoam
+	rm -Rf src/simphony-jyulb
 	rm -rf lib/liblammps.so
 	@echo
 	@echo "Removed temporary folders"
@@ -97,9 +98,9 @@ lammps:
 
 jyu-lb:
 	rm -Rf src/JYU-LB
-	git clone --branch 0.1.0 https://github.com/simphony/JYU-LB.git src/JYU-LB
+	git clone --branch master https://github.com/simphony/JYU-LB.git src/JYU-LB
 	$(MAKE) -C src/JYU-LB -j 2
-	cp src/JYU-LB/bin/jyu_lb_isothermal3D.exe $(SIMPHONYENV)/bin/jyu_lb_isothermal3D.exe
+	cp src/JYU-LB/bin/jyu_lb_isothermal.exe $(SIMPHONYENV)/bin/jyu_lb_isothermal.exe
 	rm -Rf src/JYU-LB
 	@echo
 	@echo "jyu-lb solver installed"
@@ -127,7 +128,10 @@ simphony-openfoam:
 	@echo "Simphony OpenFoam plugin installed"
 
 simphony-jyu-lb:
-	pip install --upgrade git+https://github.com/simphony/simphony-jyulb.git@0.1.1#egg=jyu_engine
+	rm -Rf src/simphony-jyulb
+	git clone --branch 0.1.2 --depth 1 https://github.com/simphony/simphony-jyulb.git src/simphony-jyulb
+	git clone --branch master https://github.com/simphony/JYU-LB.git src/simphony-jyulb/JYU-LB
+	(cd src/simphony-jyulb; python setup.py develop)
 	@echo
 	@echo "Simphony jyu-lb plugin installed"
 
