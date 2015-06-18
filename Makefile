@@ -4,6 +4,14 @@
 # You can set these variables from the command line.
 SIMPHONYENV   ?= ~/simphony
 SIMPHONYVERSION  ?= 0.1.3
+HAVE_NUMERRIN   ?= no
+
+ifeq ($(HAVE_NUMERRIN),yes)
+	TEST_NUMERRIN_COMMAND=(cd src/simphony-numerrin; LD_LIBRARY_PATH=../../lib haas numerrin_wrapper -v)
+else
+	TEST_NUMERRIN_COMMAND=@echo "skip NUMERRIN tests"
+endif
+
 
 .PHONY: clean base apt-openfoam apt-simphony apt-lammps apt-numerrin apt-mayavi fix-pip simphony-env lammps jyu-lb simphony simphony-lammps simphony-numerrin simphony-mayavi simphony-openfoam simphony-jyu-lb test-plugins test-framework
 
@@ -177,7 +185,7 @@ test-plugins:
 	LD_LIBRARY_PATH=./lib/:$LD_LIBRARY_PATH haas simlammps -v
 	haas simphony_mayavi -v
 	(cd src/simphony-openfoam; haas foam_controlwrapper -v)
-	(cd src/simphony-numerrin; LD_LIBRARY_PATH=../../lib haas numerrin_wrapper -v)
+	$(TEST_NUMERRIN_COMMAND)
 	@echo
 	@echo "Tests for the simphony plugins done"
 
