@@ -87,8 +87,9 @@ various apt repositories, and require ``sudo`` access::
 
      source /opt/openfoam222/etc/bashrc
    
-   The ``apt-numerrin`` target will install nummerin library. To use this solver, please
-   ensure that environment variable PYNUMERRIN_LICENSE points to Numerrin license file.
+   The ``apt-numerrin`` target will install the numerrin library. To use this solver, please
+   ensure that environment variable PYNUMERRIN_LICENSE points to a valid Numerrin
+   license file.
 
 
 
