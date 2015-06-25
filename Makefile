@@ -13,7 +13,7 @@ else
 endif
 
 
-.PHONY: clean base apt-openfoam apt-simphony apt-lammps apt-numerrin apt-mayavi fix-pip simphony-env lammps jyu-lb simphony simphony-lammps simphony-numerrin simphony-mayavi simphony-openfoam simphony-jyu-lb test-plugins test-framework
+.PHONY: clean base apt-openfoam apt-simphony apt-lammps apt-numerrin apt-mayavi fix-pip simphony-env lammps jyu-lb simphony simphony-lammps simphony-numerrin simphony-mayavi simphony-openfoam simphony-jyulb test-plugins test-framework
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -32,7 +32,7 @@ help:
 	@echo "  simphony-numerrin to build and install the simphony-numerrin plugin"
 	@echo "  simphony-mayavi   to build and install the simphony-mayavi plugin"
 	@echo "  simphony-openfoam to build and install the simphony-mayavi plugin"
-	@echo "  simphony-jyu-lb   to build and install the simphony-jyu-lb plugin"
+	@echo "  simphony-jyulb    to build and install the simphony-jyulb plugin"
 	@echo "  simphony-plugins  to build and install all the simphony-plugins"
 	@echo "  test-plugins      run the tests for all the simphony-plugins"
 	@echo "  test-framework    run the tests for the simphony-framework"
@@ -42,7 +42,6 @@ clean:
 	rm -Rf src/lammps
 	rm -Rf src/JYU-LB
 	rm -Rf src/simphony-openfoam
-	rm -Rf src/simphony-jyulb
 	rm -Rf src/simphony-numerrin
 	rm -rf lib/liblammps.so
 	rm -rf lib/libnumerrin4.so
@@ -120,7 +119,7 @@ lammps:
 
 jyu-lb:
 	rm -Rf src/JYU-LB
-	git clone --branch master https://github.com/simphony/JYU-LB.git src/JYU-LB
+	git clone --branch 0.1.2 https://github.com/simphony/JYU-LB.git src/JYU-LB
 	$(MAKE) -C src/JYU-LB -j 2
 	cp src/JYU-LB/bin/jyu_lb_isothermal.exe $(SIMPHONYENV)/bin/jyu_lb_isothermal.exe
 	rm -Rf src/JYU-LB
@@ -157,11 +156,8 @@ simphony-openfoam:
 	@echo
 	@echo "Simphony OpenFoam plugin installed"
 
-simphony-jyu-lb:
-	rm -Rf src/simphony-jyulb
-	git clone --branch 0.1.2 --depth 1 https://github.com/simphony/simphony-jyulb.git src/simphony-jyulb
-	git clone --branch master https://github.com/simphony/JYU-LB.git src/simphony-jyulb/JYU-LB
-	(cd src/simphony-jyulb; python setup.py develop)
+simphony-jyulb:
+	pip install git+https://github.com/simphony/simphony-jyulb.git@0.1.3
 	@echo
 	@echo "Simphony jyu-lb plugin installed"
 
@@ -170,7 +166,7 @@ simphony-lammps:
 	@echo
 	@echo "Simphony lammps plugin installed"
 
-simphony-plugins: simphony-mayavi simphony-openfoam simphony-jyu-lb simphony-lammps
+simphony-plugins: simphony-mayavi simphony-openfoam simphony-jyulb simphony-lammps
 	@echo
 	@echo "Simphony plugins installed"
 
