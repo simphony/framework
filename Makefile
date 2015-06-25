@@ -166,7 +166,7 @@ simphony-lammps:
 	@echo
 	@echo "Simphony lammps plugin installed"
 
-simphony-plugins: simphony-mayavi simphony-openfoam simphony-jyulb simphony-lammps
+simphony-plugins: simphony-numerrin simphony-mayavi simphony-openfoam simphony-jyulb simphony-lammps
 	@echo
 	@echo "Simphony plugins installed"
 

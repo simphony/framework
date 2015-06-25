@@ -153,7 +153,7 @@ Complete script
 
 ::
 
-  sudo make base apt-openfoam apt-simphony apt-lammps apt-mayavi fix-pip
+  sudo make base apt-numerrin apt-openfoam apt-simphony apt-lammps apt-mayavi fix-pip
   source /opt/openfoam222/etc/bashrc
   source ~/simphony/bin/activate
   make simphony-env
@@ -168,3 +168,7 @@ Test
 ::
 
    make test-framework
+
+.. note::
+
+   The testing simphony-numerrin is only performed if the environement variable HAVE_NUMERRIN is set to yes (i.e. ''HAVE_NUMERRIN=yes make test-framework'')
