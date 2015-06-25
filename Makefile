@@ -184,7 +184,6 @@ test-plugins:
 	haas jyulb -v
 	LD_LIBRARY_PATH=./lib/:$LD_LIBRARY_PATH haas simlammps -v
 	haas simphony_mayavi -v
-	(cd src/simphony-openfoam; haas foam_controlwrapper -v)
 	$(TEST_NUMERRIN_COMMAND)
 	@echo
 	@echo "Tests for the simphony plugins done"
