@@ -42,7 +42,6 @@ help:
 
 clean:
 	rm -Rf src/kratos
-	rm -Rf src/JYU-LB
 	rm -Rf src/simphony-openfoam
 	rm -Rf src/simphony-numerrin
 	rm -rf lib/*
