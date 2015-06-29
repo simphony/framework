@@ -158,8 +158,8 @@ Complete script
   sudo make base apt-openfoam apt-simphony apt-lammps apt-mayavi fix-pip
   make apt-kratos apt-numerrin 
   source /opt/openfoam222/etc/bashrc
-  source ~/simphony/bin/activate
   make simphony-env
+  source ~/simphony/bin/activate
   make -j 2 lammps jyu-lb
   make simphony
   make simphony-plugins
