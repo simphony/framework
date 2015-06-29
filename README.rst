@@ -78,8 +78,6 @@ various apt repositories, and require ``sudo`` access::
   sudo apt-simphony
   sudo apt-lammps
   sudo apt-mayavi
-  sudo apt-numerrin
-  sudo apt-kratos
 
 
 .. note::
@@ -123,7 +121,7 @@ which will create a virtual enviroment in ``~/simphony`` or::
 
 .. note::
 
-   From this point the simphony enviroment needs to be active::
+   From this point the simphony environment needs to be active::
 
      source ~/simphony/bin/activate
 
@@ -136,6 +134,8 @@ To build them there are separate targets::
 
   make -j 2 lammps
   make -j 2 jyu-lb
+  make numerrin
+  make jyu-lb
 
 Install Simphony
 ~~~~~~~~~~~~~~~~
@@ -156,11 +156,10 @@ Complete script
 ::
 
   sudo make base apt-openfoam apt-simphony apt-lammps apt-mayavi fix-pip
-  make apt-kratos apt-numerrin 
   source /opt/openfoam222/etc/bashrc
   make simphony-env
   source ~/simphony/bin/activate
-  make -j 2 lammps jyu-lb
+  make -j 2 kratos numerrin lammps jyu-lb
   make simphony
   make simphony-plugins
 

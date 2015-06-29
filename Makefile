@@ -7,26 +7,26 @@ SIMPHONYVERSION  ?= 0.1.3
 HAVE_NUMERRIN   ?= no
 
 ifeq ($(HAVE_NUMERRIN),yes)
-	TEST_NUMERRIN_COMMAND=(cd src/simphony-numerrin; LD_LIBRARY_PATH=../../lib haas numerrin_wrapper -v)
+	TEST_NUMERRIN_COMMAND=(cd src/simphony-numerrin; haas numerrin_wrapper -v)
 else
 	TEST_NUMERRIN_COMMAND=@echo "skip NUMERRIN tests"
 endif
 
 
-.PHONY: clean base apt-openfoam apt-kratos apt-simphony apt-numerrin apt-lammps apt-mayavi fix-pip simphony-env lammps jyu-lb simphony simphony-kratos simphony-lammps simphony-numerrin simphony-mayavi simphony-openfoam simphony-jyulb test-plugins test-framework
+.PHONY: clean base apt-openfoam apt-simphony apt-lammps apt-mayavi fix-pip simphony-env lammps jyu-lb kratos numerrin simphony simphony-kratos simphony-lammps simphony-numerrin simphony-mayavi simphony-openfoam simphony-jyulb test-plugins test-framework
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  base              to install essential packages (requires sudo)"
 	@echo "  apt-openfoam      to install openfoam 2.2.2 (requires sudo)"
 	@echo "  apt-simphony      to install building depedencies for the simphony library (requires sudo)"
-	@echo "  apt-numerrin      to install numerrin"
-	@echo "  apt-kratos        to install kratos solver"
 	@echo "  apt-lammps        to install building depedencies for the lammps solver (requires sudo)"
 	@echo "  apt-mayavi        to install building depedencies for the mayavi (requires sudo)"
 	@echo "  fix-pip           to update the version of pip and virtual evn (requires sudo)"
 	@echo "  simphony-env      to create a simphony virtualenv"
+	@echo "  kratos            to install kratos solver"
 	@echo "  lammps            to build and install the lammps solver"
+	@echo "  numerrin          to install numerrin"
 	@echo "  jyu-lb            to build and install the JYU-LB solver"
 	@echo "  simphony          to build and install the simphony library"
 	@echo "  simphony-kratos   to build and install the simphony-kratos plugin"
@@ -44,7 +44,6 @@ clean:
 	rm -Rf src/kratos
 	rm -Rf src/simphony-openfoam
 	rm -Rf src/simphony-numerrin
-	rm -rf lib/*
 	@echo
 	@echo "Removed temporary folders"
 
@@ -67,16 +66,6 @@ apt-simphony:
 	@echo
 	@echo "Build dependencies for simphony installed"
 
-apt-kratos:
-	rm -Rf src/kratos
-	mkdir -p src/kratos
-	wget https://web.cimne.upc.edu/users/croig/data/kratos-simphony.tgz -O src/kratos/kratos.tgz
-	(tar -xzf src/kratos/kratos.tgz -C src/kratos; rm -Rf src/kratos/kratos.tgz)
-	rm $(SIMPHONYENV)/lib/python2.7/site-packages/KratosMultiphysics
-	(ln -s $(PWD)/src/kratos/KratosMultiphysics $(SIMPHONYENV)/lib/python2.7/site-packages/KratosMultiphysics)
-	@echo
-	@echo "Kratos solver installed"
-
 apt-lammps:
 	apt-get update -qq
 	apt-get install -y mpi-default-bin mpi-default-dev
@@ -89,15 +78,6 @@ apt-mayavi:
 	@echo
 	@echo "Build dependencies for mayavi installed"
 
-apt-numerrin:
-	rm -Rf src/simphony-numerrin
-	git clone --branch 0.1.0 https://github.com/simphony/simphony-numerrin.git src/simphony-numerrin
-	(mkdir -p lib; cp src/simphony-numerrin/numerrin-interface/libnumerrin4.so lib/.)
-	rm -Rf src/simphony-numerrin
-	@echo
-	@echo "Numerrin installed"
-	@echo "(Ensure that environment variable PYNUMERRIN_LICENSE points to license file)"
-
 fix-pip:
 	wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 	python get-pip.py
@@ -105,12 +85,14 @@ fix-pip:
 	pip install --upgrade setuptools
 	pip install --upgrade virtualenv
 	@echo
-	pip --version
+	pip --version 
 	@echo "Latest pip installed"
 
 simphony-env:
 	rm -rf $(SIMPHONYENV)
 	virtualenv $(SIMPHONYENV) --system-site-packages
+	echo "LD_LIBRARY_PATH=$(SIMPHONYENV)/lib:$(LD_LIBRARY_PATH)" >> $(SIMPHONYENV)/bin/activate
+	echo "export LD_LIBRARY_PATH" >> $(SIMPHONYENV)/bin/activate
 	@echo
 	@echo "Simphony virtualenv created"
 
@@ -121,7 +103,7 @@ lammps:
 	cp src/lammps/src/lmp_ubuntu_simple $(SIMPHONYENV)/bin/lammps
 	$(MAKE) -C src/lammps/src makeshlib -j 2
 	$(MAKE) -C src/lammps/src ubuntu_simple -f Makefile.shlib -j 2
-	(mkdir -p lib; cd src/lammps/python; python install.py ../../../lib $(SIMPHONYENV)/lib/python2.7/site-packages/)
+	(cd src/lammps/python; python install.py $(SIMPHONYENV)/lib $(SIMPHONYENV)/lib/python2.7/site-packages/)
 	rm -Rf src/lammps
 	@echo
 	@echo "Lammps solver installed"
@@ -134,6 +116,28 @@ jyu-lb:
 	rm -Rf src/JYU-LB
 	@echo
 	@echo "jyu-lb solver installed"
+
+kratos:
+	rm -Rf src/kratos
+	mkdir src/kratos
+	wget https://web.cimne.upc.edu/users/croig/data/kratos-simphony.tgz -O src/kratos/kratos.tgz
+	(tar -xzf src/kratos/kratos.tgz -C src/kratos; rm -Rf src/kratos/kratos.tgz)
+	rm -rf $(SIMPHONYENV)/lib/python2.7/site-packages/KratosMultiphysics
+	(ln -s $(PWD)/src/kratos/KratosMultiphysics $(SIMPHONYENV)/lib/python2.7/site-packages/KratosMultiphysics)
+	cp -rf src/kratos/libs/*Kratos*.so $(SIMPHONYENV)/lib/.
+	cp -rf src/kratos/libs/libboost_python.so.1.55.0 $(SIMPHONYENV)/lib/.
+	@echo
+	@echo "Kratos solver installed"
+
+numerrin:
+	rm -Rf src/simphony-numerrin
+	git clone --branch 0.1.0 https://github.com/simphony/simphony-numerrin.git src/simphony-numerrin
+	(cp src/simphony-numerrin/numerrin-interface/libnumerrin4.so $(SIMPHONYENV)/lib/.)
+	rm -Rf src/simphony-numerrin
+	@echo
+	@echo "Numerrin installed"
+	@echo "(Ensure that environment variable PYNUMERRIN_LICENSE points to license file)"
+
 
 simphony:
 	pip install "numexpr>=2.0.0"
@@ -192,10 +196,10 @@ test-plugins:
 	pip install haas
 	haas simphony -v
 	haas jyulb -v
-	LD_LIBRARY_PATH=./lib/:$LD_LIBRARY_PATH haas simlammps -v
+	haas simlammps -v
 	haas simphony_mayavi -v
 	$(TEST_NUMERRIN_COMMAND)
-	(LD_LIBRARY_PATH=./src/kratos/libs:$LD_LIBRARY_PATH haas simkratos)
+	haas simkratos
 	@echo
 	@echo "Tests for the simphony plugins done"
 
