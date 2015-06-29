@@ -119,7 +119,7 @@ jyu-lb:
 
 kratos:
 	rm -Rf src/kratos
-	mkdir src/kratos
+	mkdir -p src/kratos
 	wget https://web.cimne.upc.edu/users/croig/data/kratos-simphony.tgz -O src/kratos/kratos.tgz
 	(tar -xzf src/kratos/kratos.tgz -C src/kratos; rm -Rf src/kratos/kratos.tgz)
 	rm -rf $(SIMPHONYENV)/lib/python2.7/site-packages/KratosMultiphysics
