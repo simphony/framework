@@ -19,9 +19,11 @@ The simphony-common version that is supported in version 0.1.3 of the framework 
 The SimPhoNy plugins that are compatible with this release:
 are:
 
-- https://github.com/simphony/simphony-jyulb/releases/tag/0.1.1, version 0.1.1
-- https://github.com/simphony/simphony-lammps-md/releases/tag/0.1.2, version 0.1.2
+- https://github.com/simphony/simphony-jyulb/releases/tag/0.1.3, version 0.1.3
+- https://github.com/simphony/simphony-kratos/releases/tag/0.1.1, version 0.1.1
+- https://github.com/simphony/simphony-lammps-md/releases/tag/0.1.3, version 0.1.3
 - https://github.com/simphony/simphony-openfoam/releases/tag/0.1.1, version 0.1.1
+- https://github.com/simphony/simphony-numerrin/releases/tag/0.1.0, version 0.1.0
 - https://github.com/simphony/simphony-mayavi/releases/tag/0.1.1, version 0.1.1
 
 
@@ -84,6 +86,11 @@ various apt repositories, and require ``sudo`` access::
    please activate the related environment::
 
      source /opt/openfoam222/etc/bashrc
+   
+   The ``apt-numerrin`` target will install the numerrin library. To use this solver, please
+   ensure that environment variable PYNUMERRIN_LICENSE points to a valid Numerrin
+   license file.
+
 
 
 
@@ -114,7 +121,7 @@ which will create a virtual enviroment in ``~/simphony`` or::
 
 .. note::
 
-   From this point the simphony enviroment needs to be active::
+   From this point the simphony environment needs to be active::
 
      source ~/simphony/bin/activate
 
@@ -127,6 +134,8 @@ To build them there are separate targets::
 
   make -j 2 lammps
   make -j 2 jyu-lb
+  make numerrin
+  make jyu-lb
 
 Install Simphony
 ~~~~~~~~~~~~~~~~
@@ -148,9 +157,9 @@ Complete script
 
   sudo make base apt-openfoam apt-simphony apt-lammps apt-mayavi fix-pip
   source /opt/openfoam222/etc/bashrc
-  source ~/simphony/bin/activate
   make simphony-env
-  make -j 2 lammps jyu-lb
+  source ~/simphony/bin/activate
+  make -j 2 kratos numerrin lammps jyu-lb
   make simphony
   make simphony-plugins
 
@@ -161,3 +170,7 @@ Test
 ::
 
    make test-framework
+
+.. note::
+
+   The testing simphony-numerrin is only performed if the environement variable HAVE_NUMERRIN is set to yes (i.e. ''HAVE_NUMERRIN=yes make test-framework'')

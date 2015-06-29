@@ -13,8 +13,8 @@ before_install:
 install:
   - source /opt/openfoam222/etc/bashrc
   - make simphony-env
-  - make -j 2 lammps jyu-lb
   - source ~/simphony/bin/activate
+  - make -j 2 kratos numerrin lammps jyu-lb
   - make simphony
   - make simphony-plugins
 script:
