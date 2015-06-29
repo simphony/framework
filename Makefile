@@ -93,7 +93,7 @@ apt-mayavi:
 apt-numerrin:
 	rm -Rf src/simphony-numerrin
 	git clone --branch 0.1.0 https://github.com/simphony/simphony-numerrin.git src/simphony-numerrin
-	cp src/simphony-numerrin/numerrin-interface/libnumerrin4.so lib/.
+	(mkdir -p lib; cp src/simphony-numerrin/numerrin-interface/libnumerrin4.so lib/.)
 	rm -Rf src/simphony-numerrin
 	@echo
 	@echo "Numerrin installed"
@@ -122,7 +122,7 @@ lammps:
 	cp src/lammps/src/lmp_ubuntu_simple $(SIMPHONYENV)/bin/lammps
 	$(MAKE) -C src/lammps/src makeshlib -j 2
 	$(MAKE) -C src/lammps/src ubuntu_simple -f Makefile.shlib -j 2
-	(mkdir lib; cd src/lammps/python; python install.py ../../../lib $(SIMPHONYENV)/lib/python2.7/site-packages/)
+	(mkdir -p lib; cd src/lammps/python; python install.py ../../../lib $(SIMPHONYENV)/lib/python2.7/site-packages/)
 	rm -Rf src/lammps
 	@echo
 	@echo "Lammps solver installed"
