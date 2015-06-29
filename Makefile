@@ -172,7 +172,7 @@ simphony-kratos:
 	@echo "Simphony Kratos plugin installed"
 
 simphony-jyulb:
-	pip install git+https://github.com/simphony/simphony-jyulb.git@0.1.3
+	pip install --upgrade git+https://github.com/simphony/simphony-jyulb.git@0.1.3
 	@echo
 	@echo "Simphony jyu-lb plugin installed"
 
