@@ -20,6 +20,7 @@ The SimPhoNy plugins that are compatible with this release:
 are:
 
 - https://github.com/simphony/simphony-jyulb/releases/tag/0.1.3, version 0.1.3
+- https://github.com/simphony/simphony-kratos/releases/tag/0.1.1, version 0.1.1
 - https://github.com/simphony/simphony-lammps-md/releases/tag/0.1.3, version 0.1.3
 - https://github.com/simphony/simphony-openfoam/releases/tag/0.1.1, version 0.1.1
 - https://github.com/simphony/simphony-numerrin/releases/tag/0.1.0, version 0.1.0
@@ -78,6 +79,7 @@ various apt repositories, and require ``sudo`` access::
   sudo apt-lammps
   sudo apt-mayavi
   sudo apt-numerrin
+  sudo apt-kratos
 
 
 .. note::
@@ -153,7 +155,8 @@ Complete script
 
 ::
 
-  sudo make base apt-numerrin apt-openfoam apt-simphony apt-lammps apt-mayavi fix-pip
+  sudo make base apt-openfoam apt-simphony apt-lammps apt-mayavi fix-pip
+  make apt-kratos apt-numerrin 
   source /opt/openfoam222/etc/bashrc
   source ~/simphony/bin/activate
   make simphony-env

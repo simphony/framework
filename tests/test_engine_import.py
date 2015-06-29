@@ -5,6 +5,7 @@ import os
 ENGINES = [
     'lammps',
     'openfoam',
+    'kratos',
     'jyulb']
 
 if os.getenv("HAVE_NUMERRIN", "no") == "yes":
@@ -15,5 +16,4 @@ class TestEngineImport(unittest.TestCase):
 
     def test_engine_import(self):
         for engine in ENGINES:
-    	    print engine 
             importlib.import_module('simphony.engine', engine)
