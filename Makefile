@@ -33,7 +33,7 @@ help:
 	@echo "  simphony-lammps   to build and install the simphony-lammps plugin"
 	@echo "  simphony-numerrin to build and install the simphony-numerrin plugin"
 	@echo "  simphony-mayavi   to build and install the simphony-mayavi plugin"
-	@echo "  simphony-openfoam to build and install the simphony-mayavi plugin"
+	@echo "  simphony-openfoam to build and install the simphony-openfoam plugin"
 	@echo "  simphony-jyulb    to build and install the simphony-jyulb plugin"
 	@echo "  simphony-plugins  to build and install all the simphony-plugins"
 	@echo "  test-plugins      run the tests for all the simphony-plugins"
