@@ -166,6 +166,8 @@ simphony-openfoam:
 	pip install --upgrade svn+https://svn.code.sf.net/p/openfoam-extend/svn/trunk/Breeder/other/scripting/PyFoam#egg=PyFoam
 	rm -Rf src/simphony-openfoam
 	git clone --branch master --depth 1 https://github.com/simphony/simphony-openfoam.git src/simphony-openfoam
+	which wmake
+	echo $PATH
 	(cd src/simphony-openfoam; python setup.py install)
 	@echo
 	@echo "Simphony OpenFoam plugin installed"

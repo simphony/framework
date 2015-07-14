@@ -19,6 +19,8 @@ install:
   - make -j 2 lammps jyu-lb numerrin
   - source ~/simphony/bin/activate
   - make simphony
+  - which wmake 
   - make simphony-plugins
+  - which wmake 
 script:
   - make test-framework
