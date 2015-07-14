@@ -11,7 +11,10 @@ before_install:
   - sh -e /etc/init.d/xvfb start
   - sudo make base apt-openfoam apt-simphony apt-lammps apt-mayavi fix-pip
 install:
+  - echo $PATH
   - source /opt/openfoam222/etc/bashrc
+  - echo $PATH
+  - which wmake 
   - make simphony-env
   - make -j 2 lammps jyu-lb numerrin
   - source ~/simphony/bin/activate
