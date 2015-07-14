@@ -33,7 +33,7 @@ help:
 	@echo "  simphony-lammps   to build and install the simphony-lammps plugin"
 	@echo "  simphony-numerrin to build and install the simphony-numerrin plugin"
 	@echo "  simphony-mayavi   to build and install the simphony-mayavi plugin"
-	@echo "  simphony-openfoam to build and install the simphony-mayavi plugin"
+	@echo "  simphony-openfoam to build and install the simphony-openfoam plugin"
 	@echo "  simphony-jyu-lb   to build and install the simphony-jyu-lb plugin"
 	@echo "  simphony-plugins  to build and install all the simphony-plugins"
 	@echo "  test-plugins      run the tests for all the simphony-plugins"
@@ -165,9 +165,9 @@ simphony-numerrin:
 simphony-openfoam:
 	pip install --upgrade svn+https://svn.code.sf.net/p/openfoam-extend/svn/trunk/Breeder/other/scripting/PyFoam#egg=PyFoam
 	rm -Rf src/simphony-openfoam
-	git clone --branch 0.1.1 --depth 1 https://github.com/simphony/simphony-openfoam.git src/simphony-openfoam
-	/opt/openfoam222/wmake/wmake libso src/simphony-openfoam/openfoam-interface
-	(cd src/simphony-openfoam/openfoam-interface; python setup.py install)
+	git clone --branch master --depth 1 https://github.com/simphony/simphony-openfoam.git src/simphony-openfoam
+	which wmake
+	echo $PATH
 	(cd src/simphony-openfoam; python setup.py install)
 	@echo
 	@echo "Simphony OpenFoam plugin installed"
@@ -201,6 +201,7 @@ test-plugins:
 	haas jyulb -v
 	haas simlammps -v
 	haas simphony_mayavi -v
+	(cd src/simphony-openfoam; haas foam_controlwrapper foam_internalwrapper -v)
 	haas simkratos -v
 	$(TEST_NUMERRIN_COMMAND)
 	@echo
