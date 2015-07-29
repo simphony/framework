@@ -5,17 +5,26 @@ python:
 virtualenv:
   system_site_packages: true
 env:
+  global:
   - SIMPHONYENV=~/simphony
+  matrix:
+  - TEST_SUITE=test-simphony
+  - TEST_SUITE=test-jyulb
+  - TEST_SUITE=test-lammps
+  - TEST_SUITE=test-mayavi
+  - TEST_SUITE=test-openfoam
+  - TEST_SUITE=test-kratos
+  - TEST_SUITE=test-integration
 before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - sudo make base apt-openfoam apt-simphony apt-lammps apt-mayavi fix-pip
 install:
   - make simphony-env
-  - make -j 2 lammps jyu-lb numerrin
+  - make -j 3 kratos lammps jyu-lb numerrin
   - source ~/simphony/bin/activate
   - source /opt/openfoam222/etc/bashrc
   - make simphony
   - make simphony-plugins
 script:
-  - make test-framework
+  - make $TEST_SUITE

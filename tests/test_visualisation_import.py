@@ -1,5 +1,5 @@
 import unittest
-import importlib
+from stevedore.extension import ExtensionManager
 
 PLUGINS = [
     'mayavi_tools']
@@ -8,5 +8,7 @@ PLUGINS = [
 class TestVisualisationPluginImport(unittest.TestCase):
 
     def test_plugin_import(self):
+        extension_manager = ExtensionManager(namespace='simphony.visualisation')
         for engine in PLUGINS:
-            importlib.import_module('simphony.visualisation', engine)
+            if engine not in extension_manager:
+                self.fail("`{}` could not be imported".format(engine))

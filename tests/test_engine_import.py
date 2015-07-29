@@ -1,12 +1,15 @@
 import unittest
-import importlib
 import os
+
+from stevedore.extension import ExtensionManager
 
 ENGINES = [
     'lammps',
-    'openfoam',
+    'openfoam_file_io',
+    'openfoam_internal',
     'kratos',
-    'jyulb']
+    'jyulb_fileio_isothermal',
+    'jyulb_internal_isothermal']
 
 if os.getenv("HAVE_NUMERRIN", "no") == "yes":
     ENGINES.append("numerrin")
@@ -15,5 +18,7 @@ if os.getenv("HAVE_NUMERRIN", "no") == "yes":
 class TestEngineImport(unittest.TestCase):
 
     def test_engine_import(self):
+        extension_manager = ExtensionManager(namespace='simphony.engine')
         for engine in ENGINES:
-            importlib.import_module('simphony.engine', engine)
+            if engine not in extension_manager:
+                self.fail("`{}` could not be imported".format(engine))
