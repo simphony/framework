@@ -159,7 +159,7 @@ simphony:
 	@echo "Simphony library installed"
 
 simphony-mayavi:
-	pip install --upgrade git+https://github.com/simphony/simphony-mayavi.git@0.1.1#egg=simphony_mayavi
+	pip install --upgrade git+https://github.com/simphony/simphony-mayavi.git@0.2.0#egg=simphony_mayavi
 	@echo
 	@echo "Simphony Mayavi plugin installed"
 
