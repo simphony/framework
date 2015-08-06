@@ -3,7 +3,7 @@
 
 # You can set these variables from the command line.
 SIMPHONYENV   ?= ~/simphony
-SIMPHONYVERSION  ?= 0.1.3
+SIMPHONYVERSION  ?= 0.1.5
 HAVE_NUMERRIN   ?= no
 
 ifeq ($(HAVE_NUMERRIN),yes)
