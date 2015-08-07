@@ -224,6 +224,7 @@ test-lammps:
 	@echo "Tests for the lammps plugin done"
 
 test-mayavi:
+        pip install mock
 	haas simphony_mayavi -v
 	@echo
 	@echo "Tests for the mayavi plugin done"
