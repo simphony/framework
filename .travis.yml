@@ -24,7 +24,7 @@ before_install:
   - sudo make base apt-openfoam apt-simphony apt-lammps apt-mayavi fix-pip
 install:
   - make simphony-env
-  - make -j 3 kratos lammps jyu-lb numerrin
+  - make kratos lammps jyu-lb numerrin
   - source ~/simphony/bin/activate
   - source /opt/openfoam222/etc/bashrc
   - make simphony

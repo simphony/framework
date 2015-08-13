@@ -3,7 +3,7 @@
 
 # You can set these variables from the command line.
 SIMPHONYENV   ?= ~/simphony
-SIMPHONYVERSION  ?= 0.1.3
+SIMPHONYVERSION  ?= 0.1.5
 HAVE_NUMERRIN   ?= no
 
 ifeq ($(HAVE_NUMERRIN),yes)
@@ -159,7 +159,7 @@ simphony:
 	@echo "Simphony library installed"
 
 simphony-mayavi:
-	pip install --upgrade git+https://github.com/simphony/simphony-mayavi.git@0.1.1#egg=simphony_mayavi
+	pip install --upgrade git+https://github.com/simphony/simphony-mayavi.git@0.2.0#egg=simphony_mayavi
 	@echo
 	@echo "Simphony Mayavi plugin installed"
 
@@ -224,6 +224,7 @@ test-lammps:
 	@echo "Tests for the lammps plugin done"
 
 test-mayavi:
+        pip install mock
 	haas simphony_mayavi -v
 	@echo
 	@echo "Tests for the mayavi plugin done"
