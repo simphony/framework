@@ -12,9 +12,9 @@ library and the SimPhoNy plugins.
 Packages
 --------
 
-The simphony-common version that is supported in version 0.1.3 of the framework is:
+The simphony-common version that is supported in version 0.2.0 of the framework is:
 
-- https://github.com/simphony/simphony-common/releases/tag/0.1.3, version 0.1.3
+- https://github.com/simphony/simphony-common/releases/tag/0.2.0, version 0.2.0
 
 The SimPhoNy plugins that are compatible with this release:
 are:
@@ -25,6 +25,7 @@ are:
 - https://github.com/simphony/simphony-openfoam/releases/tag/0.1.3, version 0.1.3
 - https://github.com/simphony/simphony-numerrin/releases/tag/0.1.0, version 0.1.0
 - https://github.com/simphony/simphony-mayavi/releases/tag/0.1.1, version 0.1.1
+- https://github.com/simphony/simphony-paraview/releases/tag/0.1.1, version 0.1.0
 
 
 Repository
@@ -77,7 +78,11 @@ various apt repositories, and require ``sudo`` access::
   sudo make apt-openfoam
   sudo make apt-simphony
   sudo make apt-lammps
+
+  # optional visualisation packages
+
   sudo make apt-mayavi
+  sudo make apt-paraview
 
 
 .. note::
@@ -149,7 +154,9 @@ Install Simphony
 
 .. note::
 
-   individual simphony plugins can be installed using the related targets.
+   The simphony-plugins target will try to install all known
+   plugins. Individual simphony plugins can be installed using the
+   related targets.
 
 
 Complete script
@@ -161,7 +168,7 @@ Complete script
   source /opt/openfoam222/etc/bashrc
   make simphony-env
   source ~/simphony/bin/activate
-  make -j 2 kratos lammps jyu-lb numerrin
+  make kratos lammps jyu-lb numerrin
   make simphony
   make simphony-plugins
 
