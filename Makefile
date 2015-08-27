@@ -5,6 +5,8 @@
 SIMPHONYENV   ?= ~/simphony
 SIMPHONYVERSION  ?= 0.2.0
 HAVE_NUMERRIN   ?= no
+HDF5_MPI ?=no  # Set this to yes if apt-paraview is used
+
 
 ifeq ($(HAVE_NUMERRIN),yes)
 	TEST_NUMERRIN_COMMAND=(cd src/simphony-numerrin; haas numerrin_wrapper -v)
@@ -163,6 +165,11 @@ simphony:
 	pip install numpy
 	pip install "numexpr>=2.0.0"
 	pip install haas
+	ifeq ($(HDF5_MPI),yes)
+	    C_INCLUDE_PATH=/usr/lib/openmpi/include pip install tables
+	else
+	    pip install tables
+	endif
 	pip install -r requirements.txt
 	pip install --upgrade git+https://github.com/simphony/simphony-common.git@$(SIMPHONYVERSION)#egg=simphony
 	@echo
