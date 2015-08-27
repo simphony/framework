@@ -22,7 +22,9 @@ before_install:
   - export PATH=/usr/lib/ccache:${PATH}
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-  - sudo make base apt-openfoam apt-simphony apt-lammps apt-mayavi apt-paraview fix-pip
+  - sudo make base
+  - sudo make apt-openfoam apt-simphony apt-lammps apt-mayavi apt-paraview
+  - make fix-pip
 install:
   - make simphony-env
   - make kratos

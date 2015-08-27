@@ -74,7 +74,6 @@ apt-openfoam:
 
 apt-simphony:
 	add-apt-repository ppa:cython-dev/master-ppa -y
-	add-apt-repository ppa:cython-dev/master-ppa -y
 	apt-get update -qq
 	apt-get install -y python-dev cython libhdf5-serial-dev libatlas-dev libatlas3gf-base
 	@echo
