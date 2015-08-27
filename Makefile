@@ -160,6 +160,7 @@ numerrin:
 	@echo "(Ensure that environment variable PYNUMERRIN_LICENSE points to license file)"
 
 simphony:
+	pip install numpy
 	pip install "numexpr>=2.0.0"
 	pip install haas
 	pip install -r requirements.txt
