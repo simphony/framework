@@ -14,6 +14,7 @@ env:
   - TEST_SUITE=test-mayavi
   - TEST_SUITE=test-openfoam
   - TEST_SUITE=test-kratos
+  - TEST_SUITE=test-paraview
   - TEST_SUITE=test-integration
 before_install:
   - sudo apt-get install ccache
@@ -22,7 +23,7 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - sudo make base
-  - sudo make apt-openfoam apt-simphony apt-lammps apt-mayavi
+  - sudo make apt-openfoam apt-simphony apt-lammps apt-mayavi apt-paraview
   - make fix-pip
 install:
   - make simphony-env
@@ -36,6 +37,7 @@ install:
   - make simphony-jyu-lb
   - make simphony-lammps
   - make simphony-mayavi
+  - make simphony-paraview
   - make simphony-openfoam
   - make simphony-numerrin
   - make simphony-kratos
