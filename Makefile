@@ -93,7 +93,7 @@ apt-mayavi:
 
 apt-paraview:
 	apt-get update -qq
-	apt-get install paraview
+	apt-get install paraview libhdf5-openmpi-dev
 	@echo
 	@echo "Build dependencies for paraview installed"
 
