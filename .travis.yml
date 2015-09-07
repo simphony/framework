@@ -8,14 +8,9 @@ env:
   global:
   - SIMPHONYENV=~/simphony
   matrix:
-  - TEST_SUITE=test-simphony
-  - TEST_SUITE=test-jyulb
-  - TEST_SUITE=test-lammps
-  - TEST_SUITE=test-mayavi
-  - TEST_SUITE=test-openfoam
-  - TEST_SUITE=test-kratos
-  - TEST_SUITE=test-paraview
-  - TEST_SUITE=test-integration
+  - TEST_SUITE="test-simphony test-mayavi test-integration test-paraview"
+  - TEST_SUITE="test-jyulb test-lammps test-openfoam"
+  - TEST_SUITE="test-kratos"
 before_install:
   - sudo apt-get install ccache
   - ccache -s
@@ -42,4 +37,4 @@ install:
   - make simphony-numerrin
   - make simphony-kratos
 script:
-  - make $TEST_SUITE
+  - make ${TEST_SUITE}
