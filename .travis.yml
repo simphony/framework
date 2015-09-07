@@ -7,8 +7,9 @@ virtualenv:
 env:
   global:
   - SIMPHONYENV=~/simphony
+  - HDF5_MPI=yes
   matrix:
-  - TEST_SUITE="test-simphony test-mayavi test-integration"
+  - TEST_SUITE="test-simphony test-mayavi test-integration test-paraview"
   - TEST_SUITE="test-jyulb test-lammps test-openfoam"
   - TEST_SUITE="test-kratos"
 before_install:
@@ -18,7 +19,7 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - sudo make base
-  - sudo make apt-openfoam apt-simphony apt-lammps apt-mayavi
+  - sudo make apt-openfoam apt-simphony apt-lammps apt-mayavi apt-paraview
   - make fix-pip
 install:
   - make simphony-env
@@ -32,6 +33,7 @@ install:
   - make simphony-jyu-lb
   - make simphony-lammps
   - make simphony-mayavi
+  - make simphony-paraview
   - make simphony-openfoam
   - make simphony-numerrin
   - make simphony-kratos
