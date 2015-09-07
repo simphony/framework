@@ -6,7 +6,7 @@ SIMPHONYENV   ?= ~/simphony
 SIMPHONYVERSION  ?= 0.2.0
 HAVE_NUMERRIN   ?= no
 USE_OPENFOAM_PARAVIEW ?= no  # Selects which Paraview package is installed (ubuntu, openfoam)
-HDF5_MPI ?=no  # Set this to yes if apt-paraview is used
+HDF5_MPI ?= no  # Set this to yes if packages that need HDF5 apt-paraview is used
 
 
 ifeq ($(HAVE_NUMERRIN),yes)
@@ -97,15 +97,15 @@ apt-mayavi:
 apt-paraview:
 	apt-get update -qq
 	ifeq ($(USE_OPENFOAM_PARAVIEW),yes)
-		echo deb http://www.openfoam.org/download/ubuntu precise main > /etc/apt/sources.list.d/openfoam.list
-		apt-get update -qq
-		apt-get install paraviewopenfoam410 libhdf5-openmpi-dev
-		@echo
-		@echo "Paraview (openfoam) installed"
+	    echo deb http://www.openfoam.org/download/ubuntu precise main > /etc/apt/sources.list.d/openfoam.list
+	    apt-get update -qq
+	    apt-get install paraviewopenfoam410 libhdf5-openmpi-dev
+	    @echo
+	    @echo "Paraview (openfoam) installed"
 	else
-		apt-get install paraview libhdf5-openmpi-dev
-		@echo
-		@echo "Paraview (ubuntu) installed"
+	    apt-get install paraview libhdf5-openmpi-dev
+	    @echo
+	    @echo "Paraview (ubuntu) installed"
 	endif
 
 fix-pip:
@@ -122,13 +122,13 @@ simphony-env:
 	rm -rf $(SIMPHONYENV)
 	virtualenv $(SIMPHONYENV) --system-site-packages
 	ifeq ($(USE_OPENFOAM_PARAVIEW),yes)
-		echo "LD_LIBRARY_PATH=$(SIMPHONYENV)/lib:/opt/paraviewopenfoam410/lib/paraview-4.1:$(LD_LIBRARY_PATH)" >> $(SIMPHONYENV)/bin/activate
-		echo "export LD_LIBRARY_PATH" >> $(SIMPHONYENV)/bin/activate
-		echo "PYTHONPATH=/opt/paraviewopenfoam410/lib/paraview-4.1/site-packages/:/opt/paraviewopenfoam410/lib/paraview-4.1/site-packages/vtk"
-		echo "export PYTHON_PATH" >> $(SIMPHONYENV)/bin/activate
+	    echo "LD_LIBRARY_PATH=$(SIMPHONYENV)/lib:/opt/paraviewopenfoam410/lib/paraview-4.1:$(LD_LIBRARY_PATH)" >> $(SIMPHONYENV)/bin/activate
+	    echo "export LD_LIBRARY_PATH" >> $(SIMPHONYENV)/bin/activate
+	    echo "PYTHONPATH=/opt/paraviewopenfoam410/lib/paraview-4.1/site-packages/:/opt/paraviewopenfoam410/lib/paraview-4.1/site-packages/vtk"
+	    echo "export PYTHON_PATH" >> $(SIMPHONYENV)/bin/activate
 	else
-		echo "LD_LIBRARY_PATH=$(SIMPHONYENV)/lib:$(LD_LIBRARY_PATH)" >> $(SIMPHONYENV)/bin/activate
-		echo "export LD_LIBRARY_PATH" >> $(SIMPHONYENV)/bin/activate
+	    echo "LD_LIBRARY_PATH=$(SIMPHONYENV)/lib:$(LD_LIBRARY_PATH)" >> $(SIMPHONYENV)/bin/activate
+	    echo "export LD_LIBRARY_PATH" >> $(SIMPHONYENV)/bin/activate
 	endif
 	@echo
 	@echo "Simphony virtualenv created"
