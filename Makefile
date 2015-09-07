@@ -92,7 +92,8 @@ apt-lammps:
 
 apt-mayavi:
 	apt-get update -qq
-	apt-get install python-vtk python-qt4 python-qt4-dev python-sip python-qt4-gl libqt4-scripttools python-imaging
+	(if ! dpkg -l | grep paraview -c >>/dev/null; then sudo apt-get install python-vtk; fi)
+	apt-get install python-qt4 python-qt4-dev python-sip python-qt4-gl libqt4-scripttools python-imaging
 	@echo
 	@echo "Build dependencies for mayavi installed"
 
