@@ -181,7 +181,7 @@ simphony-mayavi:
 	@echo "Simphony Mayavi plugin installed"
 
 simphony-paraview:
-	pip install --upgrade git+https://github.com/simphony/simphony-paraview.git@0.1.0#egg=simphony_paraview
+	pip install --upgrade git+https://github.com/simphony/simphony-paraview.git@0.1.1#egg=simphony_paraview
 	@echo
 	@echo "Simphony Paraview plugin installed"
 
