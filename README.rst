@@ -25,7 +25,7 @@ are:
 - https://github.com/simphony/simphony-openfoam/releases/tag/0.1.3, version 0.1.3
 - https://github.com/simphony/simphony-numerrin/releases/tag/0.1.0, version 0.1.0
 - https://github.com/simphony/simphony-mayavi/releases/tag/0.1.1, version 0.1.1
-- https://github.com/simphony/simphony-paraview/releases/tag/0.1.1, version 0.1.0
+- https://github.com/simphony/simphony-paraview/releases/tag/0.1.1, version 0.1.1
 
 
 Repository
