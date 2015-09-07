@@ -7,6 +7,7 @@ virtualenv:
 env:
   global:
   - SIMPHONYENV=~/simphony
+  - HDF5_MPI=yes
   matrix:
   - TEST_SUITE="test-simphony test-mayavi test-integration test-paraview"
   - TEST_SUITE="test-jyulb test-lammps test-openfoam"
