@@ -13,26 +13,11 @@ before_install:
   - export PATH=/usr/lib/ccache:${PATH}
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-  - sudo make base
-  - sudo make apt-openfoam-deps apt-simphony-deps apt-lammps-deps apt-mayavi-deps apt-aviz-deps
-  - make fix-pip
+  - sudo make prepare
 install:
-  - make simphony-env
-  - make aviz
-  - make kratos
-  - make lammps
-  - make jyu-lb
-  - make numerrin
+  - make prevenv
   - source ~/simphony/bin/activate
   - source /opt/openfoam222/etc/bashrc
-  - make simphony
-  - make simphony-aviz
-  - make simphony-jyu-lb
-  - make simphony-lammps
-  - make simphony-mayavi
-  - make simphony-openfoam
-  - make simphony-numerrin
-  - make simphony-kratos
-  - make fix-simopenfoam
+  - make postvenv
 script:
   - make test-framework
