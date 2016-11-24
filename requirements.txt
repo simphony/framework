@@ -1,5 +1,6 @@
 numpy >= 1.9.1
-enum34 >= 1.0.4
+# Pinned due to simphony openfoam
+enum34 == 1.0.4
 tables >= 3.1.1
 stevedore >= 1.2.0
 hypothesis
