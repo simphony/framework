@@ -17,6 +17,7 @@ SIMPHONY_AVIZ_VERSION ?= 0.2.0
 SIMPHONY_MAYAVI_VERSION ?= 0.4.1
 SIMPHONY_PARAVIEW_VERSION ?= 0.2.0
 OPENFOAM_VERSION ?= 231
+PARAVIEW_OPENFOAM_VERSION ?= 410
 JYU_LB_VERSION ?= 0.1.2
 AVIZ_VERSION ?= v6.5.0
 LAMMPS_VERSION ?= r13864 
@@ -134,9 +135,9 @@ apt-mayavi-deps:
 apt-paraview-deps:
 	apt-get update -qq
 ifeq ($(USE_OPENFOAM_PARAVIEW),yes)
-	echo deb http://www.openfoam.org/download/ubuntu precise main > /etc/apt/sources.list.d/openfoam.list
+	add-apt-repository http://www.openfoam.org/download/ubuntu
 	apt-get update -qq
-	apt-get install -y --force-yes paraviewopenfoam410 libhdf5-openmpi-dev
+	apt-get install -y --force-yes paraviewopenfoam$(PARAVIEW_OPENFOAM_VERSION) libhdf5-openmpi-dev
 	@echo
 	@echo "Paraview (openfoam) installed"
 else
