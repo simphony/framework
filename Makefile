@@ -7,6 +7,7 @@ SIMPHONYENV   ?= ~/simphony
 # Path for MPI in HDF5 suport
 MPI_INCLUDE_PATH ?= /usr/include/mpi
 
+# Post 0.3.0 that contains needed code for jyu-lb
 SIMPHONY_COMMON_VERSION  ?= 413eb6f5683c4733b943c300c3192265c79ac26b
 SIMPHONY_JYU_LB_VERSION ?= 0.2.0
 SIMPHONY_LAMMPS_VERSION ?= 0.1.5
@@ -104,7 +105,7 @@ apt-openfoam-deps:
 	@echo "Openfoam installed use . /opt/openfoam$(OPENFOAM_VERSION)/etc/bashrc to setup the environment"
 
 apt-simphony-deps:
-	apt-get install -y python-dev libhdf5-serial-1.8.4 libhdf5-serial-dev libatlas-dev libatlas3gf-base
+	apt-get install -y python-dev libhdf5-serial-dev libatlas-dev libatlas3gf-base
 	@echo
 	@echo "Build dependencies for simphony installed"
 
