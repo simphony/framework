@@ -31,4 +31,5 @@ install:
   - make $PLUGINS
   - make fix-simopenfoam
 script:
+  - pip freeze
   - make $TEST_SUITE
