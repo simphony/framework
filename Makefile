@@ -88,9 +88,9 @@ clean:
 	@echo
 	@echo "Removed temporary folders"
 
-prepare: base apt-openfoam-deps apt-simphony-deps apt-lammps-deps apt-aviz-deps apt-kratos-deps
+prepare: base apt-openfoam-deps apt-simphony-deps apt-lammps-deps apt-aviz-deps apt-kratos-deps fix-pip
 
-prevenv: fix-pip simphony-env aviz kratos lammps jyu-lb numerrin
+prevenv: simphony-env aviz kratos lammps jyu-lb numerrin
 
 postvenv: simphony-common simphony-aviz simphony-jyu-lb simphony-lammps simphony-mayavi simphony-openfoam simphony-numerrin simphony-kratos
 
