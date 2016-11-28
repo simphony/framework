@@ -8,3 +8,4 @@ stevedore >= 1.2.0
 # Pinned due to failures in pyyaml build 3.12
 PyYAML == 3.11
 hypothesis
+mock
