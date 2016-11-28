@@ -57,9 +57,6 @@ help:
 	@echo "    simphony-numerrin   to build and install the simphony-numerrin plugin"
 	@echo "    simphony-openfoam   to build and install the simphony-openfoam plugin"
 	@echo "    simphony-jyu-lb     to build and install the simphony-jyu-lb plugin"
-	@echo "  simphony-plugins    to build and install all the simphony-plugins"
-	@echo "    simphony-mayavi     to build and install the simphony-mayavi plugin"
-	@echo "    simphony-paraview   to build and install the simphony-mayavi plugin"
 	@echo "  test-framework      run the tests for the simphony-framework"
 	@echo "    test-plugins        run the tests for all the simphony-plugins"
 	@echo "      test-simphony       run the tests for the simphony library"
@@ -89,16 +86,10 @@ prevenv: fix-pip simphony-env aviz kratos lammps jyu-lb numerrin
 
 postvenv: simphony-common simphony-aviz simphony-jyu-lb simphony-lammps simphony-mayavi simphony-openfoam simphony-numerrin simphony-kratos
 
-plugin-deps: apt-mayavi-deps apt-paraview-deps
-
-simphony-plugins: simphony-mayavi simphony-paraview
-
 base:
-	apt-get update -qq
-	apt-get install -y build-essential subversion wget software-properties-common python-software-properties
 	add-apt-repository ppa:git-core/ppa -y
 	apt-get update -qq
-	apt-get install -y git
+	apt-get install -y build-essential subversion wget software-properties-common python-software-properties git
 
 apt-aviz-deps:
 	apt-get update -qq
@@ -290,14 +281,6 @@ simphony-lammps:
 	pip install git+https://github.com/simphony/simphony-lammps-md.git@$(SIMPHONY_LAMMPS_VERSION)#egg=simlammps
 	@echo
 	@echo "Simphony lammps plugin installed"
-
-simphony-plugins: simphony-kratos simphony-numerrin simphony-mayavi simphony-openfoam simphony-jyu-lb simphony-lammps fix-simopenfoam
-	@echo
-	@echo "Simphony plugins installed"
-
-simphony-framework:
-	@echo
-	@echo "Simphony framework installed"
 
 test-plugins: test-simphony test-jyulb test-lammps test-mayavi test-openfoam test-kratos test-aviz
 	@echo
