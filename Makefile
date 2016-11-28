@@ -328,14 +328,13 @@ test-kratos:
 	@echo
 	@echo "Tests for the kratos plugin done"
 
-ifeq ($(HAVE_NUMERRIN),yes)
-	TEST_NUMERRIN_COMMAND=haas numerrin_wrapper -v
-else
-	TEST_NUMERRIN_COMMAND=@echo "skip NUMERRIN tests"
-endif
 
 test-numerrin:
-	$(TEST_NUMERRIN_COMMAND)
+ifeq ($(HAVE_NUMERRIN),yes)
+	haas numerrin_wrapper -v
+else
+	@echo "skip NUMERRIN tests"
+endif
 	@echo
 	@echo "Tests for the numerrin plugin done"
 
