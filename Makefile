@@ -16,7 +16,7 @@ SIMPHONY_KRATOS_VERSION ?= 0.2.0
 SIMPHONY_AVIZ_VERSION ?= 0.2.0
 SIMPHONY_MAYAVI_VERSION ?= 0.4.2
 SIMPHONY_PARAVIEW_VERSION ?= 0.2.0
-OPENFOAM_VERSION ?= 222
+OPENFOAM_VERSION ?= 231
 PARAVIEW_OPENFOAM_VERSION ?= 410
 JYU_LB_VERSION ?= 0.1.2
 AVIZ_VERSION ?= v6.5.0
@@ -88,45 +88,40 @@ postvenv: simphony-common simphony-aviz simphony-jyu-lb simphony-lammps simphony
 
 base:
 	add-apt-repository ppa:git-core/ppa -y
-	apt-get update -qq
+	apt-get update 
 	apt-get install -y build-essential subversion wget software-properties-common python-software-properties git
 
 apt-aviz-deps:
-	apt-get update -qq
 	apt-get install -y python-qt4 python-qt4-gl qt4-qmake qt4-dev-tools libpng-dev
 	@echo
 	@echo "Build dependencies for Aviz"
 
 apt-openfoam-deps:
-	echo deb http://www.openfoam.org/download/ubuntu precise main > /etc/apt/sources.list.d/openfoam.list
-	apt-get update -qq
+	add-apt-repository http://www.openfoam.org/download/ubuntu
+	apt-get update
 	apt-get install -y --force-yes openfoam$(OPENFOAM_VERSION)
 	@echo
 	@echo "Openfoam installed use . /opt/openfoam$(OPENFOAM_VERSION)/etc/bashrc to setup the environment"
 
 apt-simphony-deps:
-	apt-get update -qq
 	apt-get install -y python-dev libhdf5-serial-1.8.4 libhdf5-serial-dev libatlas-dev libatlas3gf-base
 	@echo
 	@echo "Build dependencies for simphony installed"
 
 apt-lammps-deps:
-	apt-get update -qq
 	apt-get install -y mpi-default-bin mpi-default-dev
 	@echo
 	@echo "Build dependencies for lammps installed"
 
 apt-mayavi-deps:
-	apt-get update -qq
 	apt-get install -y python-vtk python-qt4 python-qt4-dev python-sip python-qt4-gl libqt4-scripttools python-imaging
 	@echo
 	@echo "Build dependencies for mayavi installed"
 
 apt-paraview-deps:
-	apt-get update -qq
 ifeq ($(USE_OPENFOAM_PARAVIEW),yes)
 	add-apt-repository http://www.openfoam.org/download/ubuntu
-	apt-get update -qq
+	apt-get update 
 	apt-get install -y --force-yes paraviewopenfoam$(PARAVIEW_OPENFOAM_VERSION) libhdf5-openmpi-1.8.4 libhdf5-openmpi-dev
 	@echo
 	@echo "Paraview (openfoam) installed"
@@ -137,7 +132,6 @@ else
 endif
 
 apt-kratos-deps:
-	apt-get update -qq
 	apt-get install -y subversion
 	@echo
 	@echo "Build dependencies for kratos installed"
