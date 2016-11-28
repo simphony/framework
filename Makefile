@@ -1,5 +1,6 @@
 # Makefile for Simphony Framework
 #
+UBUNTU_CODENAME=$(shell lsb_release -cs)
 
 # You can set these variables from the command line.
 SIMPHONYENV   ?= ~/simphony
@@ -17,7 +18,13 @@ SIMPHONY_KRATOS_VERSION ?= 0.2.0
 SIMPHONY_AVIZ_VERSION ?= 0.2.0
 SIMPHONY_MAYAVI_VERSION ?= 0.4.2
 SIMPHONY_PARAVIEW_VERSION ?= 0.2.0
+ifeq ($(UBUNTU_CODENAME),trusty)
 OPENFOAM_VERSION ?= 231
+else
+ifeq ($(UBUNTU_CODENAME),precise)
+OPENFOAM_VERSION ?= 220
+endif
+endif
 PARAVIEW_OPENFOAM_VERSION ?= 410
 JYU_LB_VERSION ?= 0.1.2
 AVIZ_VERSION ?= v6.5.0
@@ -98,7 +105,13 @@ apt-aviz-deps:
 	@echo "Build dependencies for Aviz"
 
 apt-openfoam-deps:
+ifeq ($(UBUNTU_CODENAME),trusty)
 	add-apt-repository http://www.openfoam.org/download/ubuntu
+else
+ifeq ($(UBUNTU_CODENAME),precise)
+	echo deb http://www.openfoam.org/download/ubuntu precise main > /etc/apt/sources.list.d/openfoam.list
+endif
+endif
 	apt-get update
 	apt-get install -y --force-yes openfoam$(OPENFOAM_VERSION)
 	@echo
@@ -121,7 +134,13 @@ apt-mayavi-deps:
 
 apt-paraview-deps:
 ifeq ($(USE_OPENFOAM_PARAVIEW),yes)
+ifeq ($(UBUNTU_CODENAME),trusty)
 	add-apt-repository http://www.openfoam.org/download/ubuntu
+else
+ifeq ($(UBUNTU_CODENAME),precise)
+	echo deb http://www.openfoam.org/download/ubuntu precise main > /etc/apt/sources.list.d/openfoam.list
+endif
+endif
 	apt-get update 
 	apt-get install -y --force-yes paraviewopenfoam$(PARAVIEW_OPENFOAM_VERSION) libhdf5-openmpi-1.8.4 libhdf5-openmpi-dev
 	@echo
