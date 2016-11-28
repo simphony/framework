@@ -114,6 +114,7 @@ endif
 endif
 	apt-get update
 	apt-get install -y --force-yes openfoam$(OPENFOAM_VERSION)
+	ln -s /opt/openfoam$(OPENFOAM_VERSION) /opt/openfoam
 	@echo
 	@echo "Openfoam installed use . /opt/openfoam$(OPENFOAM_VERSION)/etc/bashrc to setup the environment"
 
