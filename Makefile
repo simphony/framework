@@ -220,7 +220,7 @@ numerrin:
 
 simphony-common:
 	C_INCLUDE_PATH=$(MPI_INCLUDE_PATH) pip install -r requirements.txt
-	pip install git+https://github.com/simphony/simphony-common.git@$(SIMPHONYVERSION)#egg=simphony
+	pip install git+https://github.com/simphony/simphony-common.git@$(SIMPHONY_COMMON_VERSION)#egg=simphony
 	@echo
 	@echo "Simphony library installed"
 
