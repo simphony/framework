@@ -98,7 +98,7 @@ apt-aviz-deps:
 	@echo "Build dependencies for Aviz"
 
 apt-openfoam-deps:
-	add-apt-repository http://www.openfoam.org/download/ubuntu
+	echo deb http://www.openfoam.org/download/ubuntu precise main > /etc/apt/sources.list.d/openfoam.list
 	apt-get update -qq
 	apt-get install -y --force-yes openfoam$(OPENFOAM_VERSION)
 	@echo
