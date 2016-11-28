@@ -279,6 +279,10 @@ simphony-openfoam:
 	tar -xzf src/simphony-openfoam/pyfoam/pyfoam.tgz -C src/simphony-openfoam/pyfoam
 	(pip install src/simphony-openfoam/pyfoam/PyFoam-0.6.4; rm -Rf src/simphony-openfoam/pyfoam)
 	pip install git+https://github.com/simphony/simphony-openfoam.git@$(SIMPHONY_OPENFOAM_VERSION)
+	# install simphony-openfoam
+	(cd src/simphony-openfoam; pip install .)
+	# install simphony-openfoam-interface
+	(cd src/simphony-openfoam; ./install_foam_interface.sh)
 	@echo
 	@echo "Simphony OpenFoam plugin installed"
 
