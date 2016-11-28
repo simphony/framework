@@ -25,13 +25,13 @@ before_install:
 install:
   - make prevenv
   - source ~/simphony/bin/activate
-  - ls -la ~/simphony/lib/python2.7/site-packages/
   - source /opt/openfoam/etc/bashrc
   - make postvenv
   - make $PLUGINS
   - make fix-simopenfoam
 script:
   - pip freeze
+  - ls -la ~/simphony/lib/python2.7/site-packages/
   - python -c "import simphonyfoaminterface"
   - python -m "import foam_controlwrapper"
   - make $TEST_SUITE
