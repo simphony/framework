@@ -22,6 +22,9 @@ JYU_LB_VERSION ?= 0.1.2
 # Aviz version
 AVIZ_VERSION ?= v6.5.0
 
+# nFLUID version
+NFLUID_VERSION ?= 0.0.2.1
+
 HAVE_NUMERRIN   ?= no
 
 ifeq ($(HAVE_NUMERRIN),yes)
@@ -41,9 +44,9 @@ help:
 	@echo "  base                to install essential packages (requires sudo)"
 	@echo "  apt-aviz-deps       to install building dependencies for Aviz (requires sudo)"
 	@echo "  apt-openfoam-deps   to install openfoam 2.2.2 (requires sudo)"
-	@echo "  apt-simphony-deps   to install building depedencies for the simphony library (requires sudo)"
-	@echo "  apt-lammps-deps     to install building depedencies for the lammps solver (requires sudo)"
-	@echo "  apt-mayavi-deps     to install building depedencies for the mayavi (requires sudo)"
+	@echo "  apt-simphony-deps   to install building dependencies for the simphony library (requires sudo)"
+	@echo "  apt-lammps-deps     to install building dependencies for the lammps solver (requires sudo)"
+	@echo "  apt-mayavi-deps     to install building dependencies for the mayavi (requires sudo)"
 	@echo "  apt-paraview-deps   to install building depedencies for the paraview (requires sudo)"
 	@echo "  fix-pip             to update the version of pip and virtual evn (requires sudo)"
 	@echo "  fix-simopenfoam     to install enum3.4==1.0.4 for simphony-openfoam-0.1.5"
@@ -51,6 +54,7 @@ help:
 	@echo "  aviz                to install AViz"
 	@echo "  kratos              to install the kratos solver"
 	@echo "  lammps              to build and install the lammps solver"
+	@echo "  nfluid              to install nFLUID"
 	@echo "  numerrin            to install the numerrin solver"
 	@echo "  jyu-lb              to build and install the JYU-LB solver"
 	@echo "  simphony            to build and install the simphony library"
@@ -137,6 +141,12 @@ else
 	@echo "Paraview (ubuntu) installed"
 endif
 
+apt-nfluid-deps:
+	apt-get update -qq
+	apt-get install -y build-essential git cmake libqt4-dev libphonon-dev python2.7-dev libxml2-dev libxslt1-dev qtmobility-dev libqtwebkit-dev
+	@echo
+	@echo "Build dependencies for nFLUID installed"
+
 fix-simopenfoam:
 	pip install enum34==1.0.4
 	@echo
@@ -205,6 +215,11 @@ kratos:
 	cp -rf src/kratos/libs/libboost_python.so.1.55.0 $(SIMPHONYENV)/lib/.
 	@echo
 	@echo "Kratos solver installed"
+
+nfluid:
+	pip install --upgrade git+https://github.com/simphony/nfluid.git@$(NFLUID_VERSION)#egg=nfluid
+	@echo
+	@echo "nFLUID installed"
 
 numerrin:
 	rm -Rf src/simphony-numerrin
@@ -279,7 +294,7 @@ simphony-lammps:
 	@echo
 	@echo "Simphony lammps plugin installed"
 
-simphony-plugins: simphony-kratos simphony-numerrin simphony-mayavi simphony-openfoam simphony-jyu-lb simphony-lammps fix-simopenfoam
+simphony-plugins: simphony-kratos simphony-numerrin simphony-mayavi simphony-openfoam simphony-jyu-lb simphony-lammps nfluid fix-simopenfoam
 	@echo
 	@echo "Simphony plugins installed"
 
