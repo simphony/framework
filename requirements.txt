@@ -2,9 +2,12 @@ numexpr >= 2.0.0
 cython == 0.25.1
 haas == 0.7.0
 numpy >= 1.9.1
-enum34 >= 1.0.4
+enum34 == 1.0.4
+# Versions after this one have an embedded hdf5 library, but not the headers.
+# this results in a build vs runtime conflict of hdf5 versions.
 tables == 3.2.3.1
 stevedore >= 1.2.0
 # Pinned due to failures in pyyaml build 3.12
 PyYAML == 3.11
 hypothesis
+mock
