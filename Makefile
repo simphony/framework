@@ -5,16 +5,16 @@ SIMPHONYENV   ?= $(HOME)/simphony
 
 UBUNTU_CODENAME=$(shell lsb_release -cs)
 
-SIMPHONY_COMMON_VERSION ?= 0.4.0
-SIMPHONY_JYU_LB_VERSION ?= 0.2.1
-SIMPHONY_LAMMPS_VERSION ?= 0.1.5
-SIMPHONY_NUMERRIN_VERSION ?= 0.1.3
-SIMPHONY_OPENFOAM_VERSION ?= 0.2.4
-SIMPHONY_KRATOS_VERSION ?= 0.2.0
-SIMPHONY_AVIZ_VERSION ?= 0.2.2
-SIMPHONY_MAYAVI_VERSION ?= 0.4.3
-SIMPHONY_PARAVIEW_VERSION ?= 0.2.1
-SIMPHONY_LIGGGHTS_VERSION ?= 0.1.6
+SIMPHONY_COMMON_VERSION ?= 0.6.0
+SIMPHONY_JYU_LB_VERSION ?= 
+SIMPHONY_LAMMPS_VERSION ?=
+SIMPHONY_NUMERRIN_VERSION ?= 
+SIMPHONY_OPENFOAM_VERSION ?= 0.3.1
+SIMPHONY_KRATOS_VERSION ?= 0.3.1
+SIMPHONY_AVIZ_VERSION ?= 0.3.1
+SIMPHONY_MAYAVI_VERSION ?= 0.5.2
+SIMPHONY_PARAVIEW_VERSION ?= 0.3.1
+SIMPHONY_LIGGGHTS_VERSION ?= 0.2.1
 
 ifeq ($(UBUNTU_CODENAME),precise)
 OPENFOAM_VERSION=230
@@ -285,6 +285,7 @@ kratos:
 	@echo "Kratos solver installed"
 
 numerrin:
+ifneq ($(SIMPHONY_NUMERRIN_VERSION),)
 	rm -Rf src/simphony-numerrin
 	git clone --branch $(SIMPHONY_NUMERRIN_VERSION) https://github.com/simphony/simphony-numerrin.git src/simphony-numerrin
 	cp src/simphony-numerrin/numerrin-interface/libnumerrin4.so $(SIMPHONYENV)/lib/.
@@ -293,6 +294,10 @@ numerrin:
 	@echo
 	@echo "Numerrin installed"
 	@echo "(Ensure that environment variable PYNUMERRIN_LICENSE points to license file)"
+else
+	@echo
+	@echo "Skipped Numerrin"
+endif
 
 simphony-common:
 	C_INCLUDE_PATH=$(MPI_INCLUDE_PATH) pip install -r requirements.txt
@@ -324,9 +329,14 @@ endif
 	@echo "Simphony Paraview plugin installed"
 
 simphony-numerrin:
+ifneq ($(SIMPHONY_NUMERRIN_VERSION),)
 	pip install git+https://github.com/simphony/simphony-numerrin.git@$(SIMPHONY_NUMERRIN_VERSION)
 	@echo
-	@echo "Simphony Numerrin plugin installed"
+	@echo "simphony numerrin plugin installed"
+else
+	@echo
+	@echo "Skipping simphony numerrin plugin"
+endif
 
 simphony-openfoam:
 	rm -Rf src/simphony-openfoam
@@ -346,14 +356,24 @@ simphony-kratos:
 	@echo "Simphony Kratos plugin installed"
 
 simphony-jyu-lb:
+ifneq ($(SIMPHONY_JYU_LB_VERSION),)
 	pip install git+https://github.com/simphony/simphony-jyulb.git@$(SIMPHONY_JYU_LB_VERSION)
 	@echo
 	@echo "Simphony jyu-lb plugin installed"
+else
+	@echo
+	@echo "Skipping Simphony jyu-lb plugin"
+endif
 
 simphony-lammps:
+ifneq ($(SIMPHONY_LAMMPS_VERSION),)
 	pip install git+https://github.com/simphony/simphony-lammps-md.git@$(SIMPHONY_LAMMPS_VERSION)#egg=simlammps
 	@echo
 	@echo "Simphony lammps plugin installed"
+else
+	@echo
+	@echo "Skipping Simphony jyu-lb plugin"
+endif
 
 simphony-liggghts:
 	git clone https://github.com/simphony/simphony-liggghts.git
@@ -371,14 +391,24 @@ test-aviz:
 	@echo "Tests for the aviz plugin done"
 
 test-jyulb:
+ifneq ($(SIMPHONY_JYU_LB_VERSION),)
 	haas jyulb -v
 	@echo
 	@echo "Tests for the jyulb plugin done"
+else
+	@echo
+	@echo "Skipping tests for the jyulb plugin"
+endif
 
 test-lammps:
+ifneq ($(SIMPHONY_LAMMPS_VERSION),)
 	haas simlammps -v
 	@echo
 	@echo "Tests for the lammps plugin done"
+else
+	@echo
+	@echo "Skipping tests for lammps plugin"
+endif
 
 test-mayavi:
 	pip install mock hypothesis
