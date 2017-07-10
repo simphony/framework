@@ -1,0 +1,46 @@
+INSTALLATION OF SIMPHONY, SIMPHONY-NCAD AND NFLUID
+==================================================
+
+1. Install Python 2.7
+   - https://www.python.org/downloads/
+     (Windows package python-2.7.11.msi)
+
+2. Install Git
+   - http://www.git-scm.com/downloads/
+     (Windows package Git-2.7.0-64-bit)
+
+3. Copy 'MakeWin.bat' script to some folder 'FOO' (e.g. your Desktop)
+
+4. Open up a Git CMD terminal and change to that folder
+   - run 'git-cmd.exe'
+   - 'cd FOO'
+
+5. Execute the script 'MakeWin.bat' to install Python packages
+   - install pip package: 'MakeWin pip'
+   - install numpy package: 'MakeWin numpy'; if problems arise here then
+      . download numpy package from http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy to 'C:\Python27\Lib\site-packages'
+      . current package version is 'numpy-1.10.4+vanilla-cp27-none-win32.whl' (26/02/2016)
+      . install it manually by running: 'pip install C:\Python27\Lib\site-packages\numpy-1.10.4+vanilla-cp27-none-win32.whl'
+
+6. Install Microsoft Visual C++ Compiler for Python 2.7
+   - http://aka.ms/vcpython27/
+     (Windows package VCForPython27.msi)
+
+7. Execute the script in Git CMD from that folder 'FOO'
+   - 'MakeWin all'
+   - Usage: 'MakeWin <target>' with one of these targets:
+       simphony:        install simphony library (version 0.2.0)
+       simphony-ncad:   install ncad plugin      (version 0.2.1)
+       nfluid:          install nfluid package   (version 0.0.2.1)
+       all:             install simphony, ncad and nfluid modules
+       clean:           remove simphony, ncad and nfluid modules
+
+8. Test installation of simphony-ncad
+   - copy 'Silicon_dioxide_nanosphere.py' and 'cd' folder to the folder 'FOO'
+   - open up a CMD shell by running 'cmd.exe' and change to folder 'FOO'
+   - run: 'python Silicon_dioxide_nanosphere.py'
+
+9. Test installation of nfluid
+   - open up a CMD shell by running 'cmd.exe'
+   - run: 'python C:\Python27\Lib\site-packages\nfluid\tests\TestShapeAll.py 0'
+
